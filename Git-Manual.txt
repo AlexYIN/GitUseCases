@@ -1,0 +1,747 @@
+Git-Manual
+Git is a distributed version control system.
+Git is free software.
+Git has a mutable index called stage.
+Git tracks changes.
+
+
+More information about git:
+http://gitref.org/zh/creating/#init
+http://www.bootcss.com/p/git-guide/
+https://github.com/
+http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001373962845513aefd77a99f4145f0a2c7a7ca057e7570000
+
+
+************************************************************************************
+ #create a git public/private key  
+************************************************************************************
+Welcome to Git (version 1.9.4-preview20140929)
+
+
+Run 'git help git' to display the help index.
+Run 'git help <command>' to display help for specific commands.
+
+deyuy@CNQINN0425B5XP ~ (master)
+$ pwd
+/c/Users/deyuy
+
+deyuy@CNQINN0425B5XP ~ (master)
+
+
+deyuy@CNQINN0425B5XP ~ (master)
+$ ssh-keygen -t rsa -C "alexydy@163.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/deyuy/.ssh/id_rsa):
+/c/Users/deyuy/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/deyuy/.ssh/id_rsa.
+Your public key has been saved in /c/Users/deyuy/.ssh/id_rsa.pub.
+The key fingerprint is:
+5d:2e:3f:76:db:49:f2:2c:2e:55:ed:74:55:61:80:44 alexydy@163.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|          oE...o+|
+|           .  . .|
+|            .   o|
+|         . o   .+|
+|        S o . .o.|
+|           o .  .|
+|            =... |
+|           o +=o.|
+|            o.o+.|
++-----------------+
+
+deyuy@CNQINN0425B5XP ~ (master)
+
+************************************************************************************
+ #create a remote repository with git-hub  
+************************************************************************************
+There are a pair SSH Key:id_rsa and id_rsa.pub under .ssh directory. 
+While id_rsa is private key, id_rsa.pub is public key.
+login GitHub->“Account settings”->“SSH Keys”：
+Click “Add SSH Key”, copy id_rsa.pub to here with any title.
+
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ ssh -T git@github.com
+Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
+Hi AlexYIN! You've successfully authenticated, but GitHub does not provide shell
+ access.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git remote add origin git@github.com:AlexYIN/WBPMS.git
+fatal: remote origin already exists.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git remote rm origin
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git remote add origin git@github.com:AlexYIN/WBPMS.git
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git clone https://github.com/AlexYIN/WBPMS.git
+Cloning into 'WBPMS'...
+fatal: unable to access 'https://github.com/AlexYIN/WBPMS.git/': Failed connect
+to github.com:443; No error
+
+deyuy@CNQINN0425B5XP ~ (master)
+$ git clone git@github.com:AlexYIN/WBPMS.git
+Cloning into 'WBPMS'...
+Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (4/4), 12.15 KiB | 0 bytes/s, done.
+Checking connectivity... done.
+
+deyuy@CNQINN0425B5XP ~ (master)
+$
+
+************************************************************************************
+$git config #config your git account
+************************************************************************************
+$ git config --global user.name "Alex YIN"
+$ git config --global user.email "alexydy@163.com"
+
+
+$ git config --list
+core.symlinks=false
+core.autocrlf=true
+color.diff=auto
+color.status=auto
+color.branch=auto
+color.interactive=true
+pack.packsizelimit=2g
+help.format=html
+http.sslcainfo=/bin/curl-ca-bundle.crt
+sendemail.smtpserver=/bin/msmtp.exe
+diff.astextplain.textconv=astextplain
+rebase.autosquash=true
+user.name=AlexYIN
+user.email=alexydy@163.com
+gui.recentrepo=C:/Users/deyuy/Desktop/zhuigengxin
+gui.recentrepo=C:/Users/deyuy/Desktop/SHELL
+core.autocrlf=input
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+core.hidedotfiles=dotGitOnly
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$
+************************************************************************************
+$git init #create a empty repository
+************************************************************************************
+$ pwd
+/c/Users/deyuy/WBPMS
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS
+$ git init
+Initialized empty Git repository in e:/WBPMS/.git/
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls -a
+.  ..  .git
+************************************************************************************
+$git add <file>...  #update what will be committed
+************************************************************************************
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ vi readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls
+readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git add readme.txt
+warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls
+readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls -al
+total 9
+drwxr-xr-x    1 deyuy    Administ     4096 May  6 13:22 .
+drwxr-xr-x    1 deyuy    Administ     8192 May  6 11:15 ..
+drwxr-xr-x   10 deyuy    Administ     4096 May  6 13:23 .git
+-rw-r--r--    1 deyuy    Administ      140 May  6 13:22 readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ vim readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls
+readme.txt
+************************************************************************************
+$git commit -m "..."  #commit to repository
+************************************************************************************
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+
+$ git commit -m "add readme.txt"
+[master (root-commit) 114f80d] add readme.txt
+warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+ 1 file changed, 4 insertions(+)
+ create mode 100644 readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls
+readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+************************************************************************************
+$git status   #check the files status
+************************************************************************************
+$ git status
+On branch master
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ vim readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+************************************************************************************
+$git diff #check the changes
+************************************************************************************
+$ git diff
+diff --git a/readme.txt b/readme.txt
+index f818082..ef158a9 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,4 +1,9 @@
+ Use git to manage the WBPMS project
++
++
++
++Git is a distributed version control system.
++Git is free software.
+ More information about git:
+ http://gitref.org/zh/creating/#init
+ http://www.bootcss.com/p/git-guide/
+warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git add readme.txt
+warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   readme.txt
+
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git commit -m "change readme.txt"
+[master warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+8f486d6] change readme.txt
+warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+ 1 file changed, 5 insertions(+)
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$
+************************************************************************************
+$git log #check the changes logs
+************************************************************************************
+
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git log
+commit 981367f4478716673afe9f421abfcc83319f5bc7
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 14:13:00 2015 +0800
+
+    change Git-Manual.txt readme.txt
+
+commit 57d027f0b99727bb591cdd001504dd7ccc4667d0
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 13:54:18 2015 +0800
+
+    add Git-Manual.txt
+
+commit 8f486d6e51d5fa1ded39367ee37964ffb8bea33c
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 13:41:17 2015 +0800
+
+    change readme.txt
+
+commit 114f80da903034fc5002fdd346b1e1f2f01eb11f
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 13:34:09 2015 +0800
+
+    add readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+************************************************************************************
+$git log --pretty=oneline #check the changes logs per line 
+************************************************************************************
+$ git log --pretty=oneline
+981367f4478716673afe9f421abfcc83319f5bc7 change Git-Manual.txt readme.txt
+57d027f0b99727bb591cdd001504dd7ccc4667d0 add Git-Manual.txt
+8f486d6e51d5fa1ded39367ee37964ffb8bea33c change readme.txt
+114f80da903034fc5002fdd346b1e1f2f01eb11f add readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls
+Git-Manual.txt  readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ vim readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   Git-Manual.txt
+        modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git add Git-Manual.txt readme.txt
+warning: CRLF will be replaced by LF in Git-Manual.txt.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git commit -m "change style"
+[master warning: CRLF will be replaced by LF in Git-Manual.txt.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+8da5889] change style
+warning: CRLF will be replaced by LF in Git-Manual.txt.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in readme.txt.
+The file will have its original line endings in your working directory.
+ 2 files changed, 42 insertions(+), 3 deletions(-)
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls
+Git-Manual.txt  readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+************************************************************************************
+$git reset --hard HEAD^#reset to previous version 
+************************************************************************************
+$ git reset --hard HEAD^
+HEAD is now at 981367f change Git-Manual.txt readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ vim readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git log
+commit 981367f4478716673afe9f421abfcc83319f5bc7
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 14:13:00 2015 +0800
+
+    change Git-Manual.txt readme.txt
+
+commit 57d027f0b99727bb591cdd001504dd7ccc4667d0
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 13:54:18 2015 +0800
+
+    add Git-Manual.txt
+
+commit 8f486d6e51d5fa1ded39367ee37964ffb8bea33c
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 13:41:17 2015 +0800
+
+    change readme.txt
+
+commit 114f80da903034fc5002fdd346b1e1f2f01eb11f
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 13:34:09 2015 +0800
+
+    add readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+************************************************************************************
+$git reset --hard 8da5889 #reset to 8da5889(commit id) version 
+************************************************************************************
+$ git reset --hard 8da5889]
+fatal: ambiguous argument '8da5889]': unknown revision or path not in the workin
+g tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git reset --hard 8da5889
+HEAD is now at 8da5889 change style
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ vim readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git log
+commit 8da588937ede1184aeff0e297f877f6d1449cb7b
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 14:21:24 2015 +0800
+
+    change style
+
+commit 981367f4478716673afe9f421abfcc83319f5bc7
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 14:13:00 2015 +0800
+
+    change Git-Manual.txt readme.txt
+
+commit 57d027f0b99727bb591cdd001504dd7ccc4667d0
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 13:54:18 2015 +0800
+
+    add Git-Manual.txt
+
+commit 8f486d6e51d5fa1ded39367ee37964ffb8bea33c
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 13:41:17 2015 +0800
+
+    change readme.txt
+
+commit 114f80da903034fc5002fdd346b1e1f2f01eb11f
+Author: alex <yuexiaxiaoxi@126.com>
+Date:   Wed May 6 13:34:09 2015 +0800
+
+    add readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+************************************************************************************
+$git reflog   #check history commands
+************************************************************************************
+$ git reflog
+8da5889 HEAD@{0}: reset: moving to 8da5889
+981367f HEAD@{1}: reset: moving to HEAD^
+8da5889 HEAD@{2}: commit: change style
+981367f HEAD@{3}: commit: change Git-Manual.txt readme.txt
+57d027f HEAD@{4}: commit: add Git-Manual.txt
+8f486d6 HEAD@{5}: commit: change readme.txt
+114f80d HEAD@{6}: commit (initial): add readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$
+
+************************************************************************************
+$git checkout -- readme.txt  # discard your changes before add to git-cache 
+************************************************************************************
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git diff
+diff --git a/readme.txt b/readme.txt
+index 84902b0..e1e0e6a 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,3 +1,4 @@
+ *******************************************************************************
+ ************* Wrist Blood Pressure Monitor System (WBPMS) *********************
+ *******************************************************************************
++xiaohushi
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git checkout -- readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ cat readme.txt
+*******************************************************************************
+************* Wrist Blood Pressure Monitor System (WBPMS) *********************
+*******************************************************************************
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$
+************************************************************************************
+$git reset HEAD readme.txt  # discard your changes after add to git-cache
+							#1.git reset HEAD readme.txt
+							#2.git checkout -- readme.txt
+************************************************************************************
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git diff
+diff --git a/readme.txt b/readme.txt
+index 84902b0..e1e0e6a 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,3 +1,4 @@
+ *******************************************************************************
+ ************* Wrist Blood Pressure Monitor System (WBPMS) *********************
+ *******************************************************************************
++xiaohushi
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git checkout -- readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ cat readme.txt
+*******************************************************************************
+************* Wrist Blood Pressure Monitor System (WBPMS) *********************
+*******************************************************************************
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git reflog
+c61c315 HEAD@{0}: commit: update git manual-add git reflog
+8da5889 HEAD@{1}: reset: moving to 8da5889
+981367f HEAD@{2}: reset: moving to HEAD^
+8da5889 HEAD@{3}: commit: change style
+981367f HEAD@{4}: commit: change Git-Manual.txt readme.txt
+57d027f HEAD@{5}: commit: add Git-Manual.txt
+8f486d6 HEAD@{6}: commit: change readme.txt
+114f80d HEAD@{7}: commit (initial): add readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ vim readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git diff
+diff --git a/Git-Manual.txt b/Git-Manual.txt
+index 0233bd8..6370c1f 100644
+--- a/Git-Manual.txt
++++ b/Git-Manual.txt
+@@ -340,3 +340,44 @@ $ git reflog
+
+ deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+ $
++
++*******************************************************************************
++$git checkout -- readme.txt  # discard your changes before add to git-cache
++*******************************************************************************
++deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
++$ git diff
++diff --git a/readme.txt b/readme.txt
++index 84902b0..e1e0e6a 100644
++--- a/readme.txt
+++++ b/readme.txt
++@@ -1,3 +1,4 @@
++ ******************************************************************************
++ ************* Wrist Blood Pressure Monitor System (WBPMS) ********************
++ ******************************************************************************
+++xiaohushi
++
++deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
++$ git status
++On branch master
++Changes not staged for commit:
++  (use "git add <file>..." to update what will be committed)
++  (use "git checkout -- <file>..." to discard changes in working directory)
++
++        modified:   readme.txt
++
++no changes added to commit (use "git add" and/or "git commit -a")
++
++deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
++$ git checkout -- readme.txt
++
++deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
++$ cat readme.txt
++*******************************************************************************
++************* Wrist Blood Pressure Monitor System (WBPMS) *********************
++*******************************************************************************
++
++deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
++$
++*******************************************************************************
++$git checkout -- readme.txt  # discard your changes before add to git-cache
++*******************************************************************************
+\ No newline at end of file
+diff --git a/readme.txt b/readme.txt
+index 84902b0..6b6c4e3 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,3 +1,4 @@
+ *******************************************************************************
+ ************* Wrist Blood Pressure Monitor System (WBPMS) *********************
+ *******************************************************************************
++xiaohushi WBPMS
+warning: CRLF will be replaced by LF in Git-Manual.txt.
+The file will have its original line endings in your working directory.
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ cat readme.txt
+*******************************************************************************
+************* Wrist Blood Pressure Monitor System (WBPMS) *********************
+*******************************************************************************
+xiaohushi WBPMS
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git add readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   readme.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   Git-Manual.txt
+
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git reset HEAD readme.txt
+Unstaged changes after reset:
+M       Git-Manual.txt
+M       readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   Git-Manual.txt
+        modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ cat readme.txt
+*******************************************************************************
+************* Wrist Blood Pressure Monitor System (WBPMS) *********************
+*******************************************************************************
+xiaohushi WBPMS
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git checkout -- readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ cat readme.txt
+*******************************************************************************
+************* Wrist Blood Pressure Monitor System (WBPMS) *********************
+*******************************************************************************
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$
+
+************************************************************************************
+$git rm readme.txt  # remove files
+							#1.git rm readme.txt
+							#2.git commit -m "remove readme.txt"
+************************************************************************************
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ vi test.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git add test.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git commit -m "add test.txt"
+[master ed004de] add test.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ rm test.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    test.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git rm test.txt
+rm 'test.txt'
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git commit -m "remove test.txt"
+[master 7c8a3c9] remove test.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 test.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git status
+On branch master
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ ls
+Git-Manual.txt  readme.txt
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$ git checkout -- test.txt
+error: pathspec 'test.txt' did not match any file(s) known to git.
+
+deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
+$
+
