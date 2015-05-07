@@ -56,7 +56,7 @@ The key's randomart image is:
 deyuy@CNQINN0425B5XP ~ (master)
 
 ************************************************************************************
- #create a remote repository with git-hub  
+ git remote add origin https://github.com/AlexYIN/WBPMS.git #create a remote repository with git-hub  
 ************************************************************************************
 There are a pair SSH Key:id_rsa and id_rsa.pub under .ssh directory. 
 While id_rsa is private key, id_rsa.pub is public key.
@@ -70,17 +70,9 @@ Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
 Hi AlexYIN! You've successfully authenticated, but GitHub does not provide shell
  access.
 
-deyuy@CNQINN0425B5XP ~/WBPMS (master)
-$ git remote add origin git@github.com:AlexYIN/WBPMS.git
-fatal: remote origin already exists.
-
-deyuy@CNQINN0425B5XP ~/WBPMS (master)
-$ git remote rm origin
-
-deyuy@CNQINN0425B5XP ~/WBPMS (master)
-$ git remote add origin git@github.com:AlexYIN/WBPMS.git
-
-deyuy@CNQINN0425B5XP ~/WBPMS (master)
+************************************************************************************
+git clone git@github.com:AlexYIN/WBPMS.gi #clone a remote repository to local directory  
+************************************************************************************
 $ git clone https://github.com/AlexYIN/WBPMS.git
 Cloning into 'WBPMS'...
 fatal: unable to access 'https://github.com/AlexYIN/WBPMS.git/': Failed connect
@@ -98,7 +90,33 @@ Checking connectivity... done.
 
 deyuy@CNQINN0425B5XP ~ (master)
 $
+************************************************************************************
+git push -u origin master  #push local repository to remote repository 
+************************************************************************************
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git remote add origin git@github.com:AlexYIN/WBPMS.git
+fatal: remote origin already exists.
 
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git remote rm origin
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git remote add origin git@github.com:AlexYIN/WBPMS.git
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git push -u origin master
+Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 4.77 KiB | 0 bytes/s, done.
+Total 4 (delta 0), reused 0 (delta 0)
+To git@github.com:AlexYIN/WBPMS.git
+   0a11106..ddecc23  master -> master
+Branch master set up to track remote branch master from origin.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$
 ************************************************************************************
 $git config #config your git account
 ************************************************************************************
