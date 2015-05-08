@@ -20,3 +20,4 @@ create AND switch to new branch feature1
  Use dev for development
  Use alex... for private development
 ************************************************************************************************************************
+fix bug
