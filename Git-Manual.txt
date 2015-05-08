@@ -72,6 +72,12 @@ Hi AlexYIN! You've successfully authenticated, but GitHub does not provide shell
 
 ************************************************************************************
 git clone git@github.com:AlexYIN/WBPMS.gi #clone a remote repository to local directory  
+
+NOTE:
+Github support several protocols, so you can use either https://github.com/AlexYIN/WBPMS.git
+or git@github.com:AlexYIN/WBPMS.git to connect the your github repository.
+But If your company can only support and open http ports you can only use method 1.
+even though this is a slow access method.
 ************************************************************************************
 $ git clone https://github.com/AlexYIN/WBPMS.git
 Cloning into 'WBPMS'...
@@ -114,6 +120,49 @@ Total 4 (delta 0), reused 0 (delta 0)
 To git@github.com:AlexYIN/WBPMS.git
    0a11106..ddecc23  master -> master
 Branch master set up to track remote branch master from origin.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$
+$ cp ../Git-Manual.txt .
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   Git-Manual.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git commit -am "Add git push -u origin master"
+warning: CRLF will be replaced by LF in Git-Manual.txt.
+The file will have its original line endings in your working directory.
+[master warning: CRLF will be replaced by LF in Git-Manual.txt.
+The file will have its original line endings in your working directory.
+18fdd62] Add git push -u origin master
+warning: CRLF will be replaced by LF in Git-Manual.txt.
+The file will have its original line endings in your working directory.
+ 1 file changed, 30 insertions(+), 12 deletions(-)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ ls
+Git-Manual.txt  LICENSE  README.md  readme.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git push origin master
+Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 623 bytes | 0 bytes/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To git@github.com:AlexYIN/WBPMS.git
+   ddecc23..18fdd62  master -> master
 
 deyuy@CNQINN0425B5XP ~/WBPMS (master)
 $
@@ -160,7 +209,7 @@ $ pwd
 
 deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS
 $ git init
-Initialized empty Git repository in e:/WBPMS/.git/
+Initialized empty Git repository in c:/Users/deyuy/WBPMS/.git/
 
 deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
 $ ls
@@ -763,3 +812,6 @@ error: pathspec 'test.txt' did not match any file(s) known to git.
 deyuy@CNQINN0425B5XP /c/Users/deyuy/WBPMS (master)
 $
 
+************************************************************************************
+$git checkout -b dev 		# Add new branch 
+************************************************************************************
