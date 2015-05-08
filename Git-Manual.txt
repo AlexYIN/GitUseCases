@@ -1054,3 +1054,210 @@ H THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 deyuy@CNQINN0425B5XP ~/WBPMS (master|MERGING)
 $
+
+
+************************************************************************************
+$git merge  		# conflict fix
+************************************************************************************
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git checkout -b feature1
+Switched to a new branch 'feature1'
+
+deyuy@CNQINN0425B5XP ~/WBPMS (feature1)
+$ git branch
+  dev
+* feature1
+  master
+
+deyuy@CNQINN0425B5XP ~/WBPMS (feature1)
+$ echo "create and switch to new branch feature1" >> readme.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (feature1)
+$ git add readmet.txt
+fatal: pathspec 'readmet.txt' did not match any files
+
+deyuy@CNQINN0425B5XP ~/WBPMS (feature1)
+$ git commit -am "new branch feature1"
+[feature1 a0ea91c] new branch feature1
+ 1 file changed, 1 insertion(+)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (feature1)
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ vim readme.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ echo "create & switch to new branch feature1" >> readme.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git commit -am "& new branch feature1"
+[master a299d35] & new branch feature1
+ 1 file changed, 1 insertion(+)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git merge feature1
+Auto-merging readme.txt
+CONFLICT (content): Merge conflict in readme.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master|MERGING)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master|MERGING)
+$ cat readme.txt
+********************************************************************************
+******************************************
+******************** Wrist Blood Pressure Monitor System (WBPMS)
+********************************************************************************
+******************************************
+Copyright (c) 2011-2015 GitHub Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in th
+e Software without restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so, subj
+ect to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all c
+opies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
+ED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR
+A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYR
+IGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WIT
+H THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+********************************************************************************
+******************************************
+1.Get WBPMS repository
+ https://github.com/AlexYIN/WBPMS.git
+********************************************************************************
+******************************************Creating a new branch dev
+<<<<<<< HEAD
+create & switch to new branch feature1
+=======
+create and switch to new branch feature1
+>>>>>>> feature1
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master|MERGING)
+$ vim readme.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master|MERGING)
+$ cat readme.txt
+********************************************************************************
+******************************************
+******************** Wrist Blood Pressure Monitor System (WBPMS)
+********************************************************************************
+******************************************
+Copyright (c) 2011-2015 GitHub Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in th
+e Software without restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so, subj
+ect to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all c
+opies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
+ED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR
+A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYR
+IGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WIT
+H THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+********************************************************************************
+******************************************
+1.Get WBPMS repository
+ https://github.com/AlexYIN/WBPMS.git
+********************************************************************************
+******************************************Creating a new branch dev
+create AND switch to new branch feature1
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master|MERGING)
+$ git commit -m "conflict fixed"
+U       readme.txt
+error: 'commit' is not possible because you have unmerged files.
+hint: Fix them up in the work tree,
+hint: and then use 'git add/rm <file>' as
+hint: appropriate to mark resolution and make a commit,
+hint: or use 'git commit -a'.
+fatal: Exiting because of an unresolved conflict.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master|MERGING)
+$ git commit -am "conflict fixed"
+[master fbb93f3] conflict fixed
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git log --graph --pretty=oneline --abbrev-commit
+*   fbb93f3 conflict fixed
+|\
+| * a0ea91c new branch feature1
+* | a299d35 & new branch feature1
+|/
+*   974a25c test merge
+|\
+| * 9e773a5 add new branch dev
+* | 0db0ab0 add git merge
+|/
+* 18fdd62 Add git push -u origin master
+* ddecc23 Add Git-Manual.txt readme.txt
+* 0a11106 Initial commit
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git branch -d feature1
+Deleted branch feature1 (was a0ea91c).
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git log --graph --pretty=oneline --abbrev-commit
+*   fbb93f3 conflict fixed
+|\
+| * a0ea91c new branch feature1
+* | a299d35 & new branch feature1
+|/
+*   974a25c test merge
+|\
+| * 9e773a5 add new branch dev
+* | 0db0ab0 add git merge
+|/
+* 18fdd62 Add git push -u origin master
+* ddecc23 Add Git-Manual.txt readme.txt
+* 0a11106 Initial commit
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git branch
+  dev
+* master
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$
