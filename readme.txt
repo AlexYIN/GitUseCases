@@ -19,5 +19,7 @@ create AND switch to new branch feature1
  Use master for official release
  Use dev for development
  Use alex... for private development
+ Use bug[n] to fix the issue
+ Use feature[n] to 
 ************************************************************************************************************************
 fix bug

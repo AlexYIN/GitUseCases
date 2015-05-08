@@ -1323,5 +1323,190 @@ $ git log --graph --pretty=oneline --abbrev-commit
 deyuy@CNQINN0425B5XP ~/WBPMS (master)
 $
 ************************************************************************************
-#use bug branch  
+use bug branch  
+1.git stash 	#store the context
+2.fix the bug 
+3.git stash pop	#restore the context
+************************************************************************************
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 11 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   Git-Manual.txt
+        modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git stash
+Saved working directory and index state WIP on master: 245bbee branch management
+
+HEAD is now at 245bbee branch management
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 11 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git checkout -b issue-1
+Switched to a new branch 'issue-1'
+
+deyuy@CNQINN0425B5XP ~/WBPMS (issue-1)
+$ echo "fix bug" >> readme.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (issue-1)
+$ git commit -am "fix bug 1"
+[issue-1 d8242da] fix bug 1
+ 1 file changed, 1 insertion(+)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (issue-1)
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 11 commits.
+  (use "git push" to publish your local commits)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git merge --no-ff -m "merged bug fix 1"
+fatal: No commit specified and merge.defaultToUpstream not set.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git merge --no -ff -m "merged bug fix 1" issue-1
+error: Ambiguous option: no (could be --no-gpg-sign or --no-overwrite-ignore)
+usage: git merge [options] [<commit>...]
+   or: git merge [options] <msg> HEAD <commit>
+   or: git merge --abort
+
+    -n                    do not show a diffstat at the end of the merge
+    --stat                show a diffstat at the end of the merge
+    --summary             (synonym to --stat)
+    --log[=<n>]           add (at most <n>) entries from shortlog to merge commi
+t message
+    --squash              create a single commit instead of doing a merge
+    --commit              perform a commit if the merge succeeds (default)
+    -e, --edit            edit message before committing
+    --ff                  allow fast-forward (default)
+    --ff-only             abort if fast-forward is not possible
+    --rerere-autoupdate   update the index with reused conflict resolution if po
+ssible
+    --verify-signatures   Verify that the named commit has a valid GPG signature
+
+    -s, --strategy <strategy>
+                          merge strategy to use
+    -X, --strategy-option <option=value>
+                          option for selected merge strategy
+    -m, --message <message>
+                          merge commit message (for a non-fast-forward merge)
+    -v, --verbose         be more verbose
+    -q, --quiet           be more quiet
+    --abort               abort the current in-progress merge
+    --progress            force progress reporting
+    -S, --gpg-sign[=<key id>]
+                          GPG sign commit
+    --overwrite-ignore    update ignored files (default)
+
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git merge --no-ff -m "merged bug fix 1" issue-1
+Merge made by the 'recursive' strategy.
+ readme.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 13 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git stash list
+stash@{0}: WIP on master: 245bbee branch management
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git stash pop
+Auto-merging readme.txt
+On branch master
+Your branch is ahead of 'origin/master' by 13 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   Git-Manual.txt
+        modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (40a920637ca9435acabf4d25deb8cc2188c6c973)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ cat readme.txt
+********************************************************************************
+****************************************
+******************** Wrist Blood Pressure Monitor System (WBPMS)
+********************************************************************************
+****************************************
+Copyright (c) 2011-2015 GitHub Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in th
+e Software without restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so, subj
+ect to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all c
+opies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
+ED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR
+A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYR
+IGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WIT
+H THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+********************************************************************************
+****************************************
+1.Get WBPMS repository
+ https://github.com/AlexYIN/WBPMS.git
+********************************************************************************
+****************************************Creating a new branch dev
+create AND switch to new branch feature1
+********************************************************************************
+****************************************
+2.Branch management
+ Use master for official release
+ Use dev for development
+ Use alex... for private development
+ Use issue[n] for bug fix
+ Use feature[n] for new feature
+ 
+ git remote & git remote to list the remote repository
+ git push -u orign master/dev to push your private repository
+ 
+********************************************************************************
+****************************************
+fix bug
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$
+
+************************************************************************************
+use multi branch  
+1.git remote -v 	#query the remote repository 
+2.git push origin branch-name[faulse-> git pull first] 
+3.git checkout -b branch-name origin/branch-name #create local repository with same name
+4.git branch --set-upstream branch-name origin/branch-name	#setup relevance local and remote repository
 ************************************************************************************
