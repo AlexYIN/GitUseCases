@@ -21,5 +21,6 @@ create AND switch to new branch feature1
  Use alex... for private development
  Use bug[n] to fix the issue
  Use feature[n] to 
+ Use tag to add more information
 ************************************************************************************************************************
 fix bug

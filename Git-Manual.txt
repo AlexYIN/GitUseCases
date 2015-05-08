@@ -1510,3 +1510,178 @@ use multi branch
 3.git checkout -b branch-name origin/branch-name #create local repository with same name
 4.git branch --set-upstream branch-name origin/branch-name	#setup relevance local and remote repository
 ************************************************************************************
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git remote
+origin
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git remote -v
+origin  git@github.com:AlexYIN/GitUseCases.git (fetch)
+origin  git@github.com:AlexYIN/GitUseCases.git (push)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git status
+On branch master
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git checkout -b dev origin/dev
+fatal: Cannot update paths and switch to branch 'dev' at the same time.
+Did you intend to checkout 'origin/dev' which can not be resolved as commit?
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git branch
+  dev
+  feature2
+  issue-1
+* master
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git checkout dev
+Switched to branch 'dev'
+
+deyuy@CNQINN0425B5XP ~/WBPMS (dev)
+$ git status
+On branch dev
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP ~/WBPMS (dev)
+$ git push origin dev
+Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
+To git@github.com:AlexYIN/GitUseCases.git
+ ! [rejected]        dev -> dev (non-fast-forward)
+error: failed to push some refs to 'git@github.com:AlexYIN/GitUseCases.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (dev)
+$ git pull
+Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
+From github.com:AlexYIN/GitUseCases
+ * [new branch]      dev        -> origin/dev
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> dev
+
+
+deyuy@CNQINN0425B5XP ~/WBPMS (dev)
+$ git branch --set-upstream-to=origin/dev dev
+Branch dev set up to track remote branch dev from origin.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (dev)
+$ git push origin dev
+Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
+To git@github.com:AlexYIN/GitUseCases.git
+ ! [rejected]        dev -> dev (non-fast-forward)
+error: failed to push some refs to 'git@github.com:AlexYIN/GitUseCases.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+deyuy@CNQINN0425B5XP ~/WBPMS (dev)
+$ git pull
+Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
+Updating 9e773a5..df1610c
+Fast-forward
+ Git-Manual.txt | 697 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ readme.txt     |  18 +-
+ test.txt       |   1 +
+ 3 files changed, 711 insertions(+), 5 deletions(-)
+ create mode 100644 test.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (dev)
+$ git commit -am "git push/pull"
+On branch dev
+Your branch is up-to-date with 'origin/dev'.
+
+nothing to commit, working directory clean
+
+deyuy@CNQINN0425B5XP ~/WBPMS (dev)
+$ git push origin dev
+Enter passphrase for key '/c/Users/deyuy/.ssh/id_rsa':
+Everything up-to-date
+
+deyuy@CNQINN0425B5XP ~/WBPMS (dev)
+$
+
+
+
+
+************************************************************************************
+use multi tag  
+1.git tag <name> [commit id]	#create a new tag, default to HEAD
+2.git tag -a <tagname> -m "blablabla..." [commit id]
+3.git tag -s <tagname> -m "blablabla..." [commit id]
+4.git tag	#show the tag list
+5.git tag -d <tagname>	#delete local tag
+6.git push <remote repository> <tagname>	#tag will be only stored in localhost without push
+7.git push <remote repository> --tags		#push all un-push tags 
+8.git tag -d <tagname> and git push <remote repository> :refs/tags/<tagname>	#delete remote tag
+************************************************************************************
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git log --pretty=oneline --abbrev-commit
+df1610c multi barach
+5f6b1d5 merged bug fix 1
+d8242da fix bug 1
+245bbee branch management
+0d41abe Git-manual.txt update
+cbacb97 merge with no-ff
+49de066 --no-ff merge
+97ff308 conflict fixed
+fbb93f3 conflict fixed
+a299d35 & new branch feature1
+a0ea91c new branch feature1
+974a25c test merge
+0db0ab0 add git merge
+9e773a5 add new branch dev
+18fdd62 Add git push -u origin master
+ddecc23 Add Git-Manual.txt readme.txt
+0a11106 Initial commit
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git tag v0.1 0a11106
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git tag -d v0.1
+Deleted tag 'v0.1' (was 0a11106)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git tag -a v0.1 -m "version 0.1 released" 0a11106
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git show v0.1
+tag v0.1
+Tagger: AlexYIN <alexydy@163.com>
+Date:   Fri May 8 14:25:51 2015 +0800
+
+version 0.1 released
+
+commit 0a11106d7c482fb3ffc5698530c8bc04f7453309
+Author: AlexYIN <alexydy@163.com>
+Date:   Thu May 7 13:10:27 2015 +0800
+
+    Initial commit
+
+diff --git a/LICENSE b/LICENSE
+new file mode 100644
+index 0000000..733c072
+--- /dev/null
++++ b/LICENSE
+@@ -0,0 +1,675 @@
++                    GNU GENERAL PUBLIC LICENSE
++                       Version 3, 29 June 2007
++
++ Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)ing it is not allowed.
+$
