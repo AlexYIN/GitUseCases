@@ -1261,3 +1261,64 @@ $ git branch
 
 deyuy@CNQINN0425B5XP ~/WBPMS (master)
 $
+
+
+************************************************************************************
+$git merge --no-ff -m "merge with no-ff" feature2 		#  
+************************************************************************************
+deyuy@CNQINN0425B5XP ~/WBPMS (feature2)
+$ echo "use git merge --no-ff -m " > test.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (feature2)
+$ git commit -am "--no-ff merge"
+On branch feature2
+Untracked files:
+        test.txt
+
+nothing added to commit but untracked files present
+
+deyuy@CNQINN0425B5XP ~/WBPMS (feature2)
+$ git add test.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (feature2)
+$ git commit -m "--no-ff merge"
+[feature2 49de066] --no-ff merge
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (feature2)
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git merge --no-ff -m "merge with no-ff" feature2
+Merge made by the 'recursive' strategy.
+ test.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git log --graph --pretty=oneline --abbrev-commit
+*   cbacb97 merge with no-ff
+|\
+| * 49de066 --no-ff merge
+|/
+* 97ff308 conflict fixed
+*   fbb93f3 conflict fixed
+|\
+| * a0ea91c new branch feature1
+* | a299d35 & new branch feature1
+|/
+*   974a25c test merge
+|\
+| * 9e773a5 add new branch dev
+* | 0db0ab0 add git merge
+|/
+* 18fdd62 Add git push -u origin master
+* ddecc23 Add Git-Manual.txt readme.txt
+* 0a11106 Initial commit
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$
