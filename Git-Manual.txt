@@ -1685,3 +1685,100 @@ index 0000000..733c072
 
 deyuy@CNQINN0425B5XP ~/WBPMS (master)ing it is not allowed.
 $
+
+
+
+************************************************************************************************************************
+Branch management 
+ Use master for official release
+ Use dev for development
+ Use alex... for private development
+ Use bug[n] to fix the issue
+ Use feature[n] to 
+ Use tag to add more information
+************************************************************************************************************************
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ cat .git/config
+[core]
+        repositoryformatversion = 0
+        filemode = false
+        bare = false
+        logallrefupdates = true
+        symlinks = false
+        ignorecase = true
+        hideDotFiles = dotGitOnly
+[branch "master"]
+[branch "master"]
+[remote "origin"]
+        url = git@github.com:AlexYIN/GitUseCases.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "dev"]
+        remote = origin
+        merge = refs/heads/dev
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git config --global color.ui true
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git config --global alias.st status
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git config --global alias.co checkout
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git config --global alias.ci commit
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git config --global alias.br branch
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git config --global alias.unstage 'reset HEAN'
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git unstage readme.txt
+fatal: ambiguous argument 'HEAN': unknown revision or path not in the working tr
+ee.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git config --global alias.unstage 'reset HEAD'
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git unstage readme.txt
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git config --global alias.last 'log -1'
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ git last
+commit b4bc57c7aeb7f4d88f5c0e13a7971a2d8bf46c2d
+Author: AlexYIN <alexydy@163.com>
+Date:   Fri May 8 14:43:37 2015 +0800
+
+    tag management
+
+deyuy@CNQINN0425B5XP ~/WBPMS (master)
+$ cat .gitconfig
+[user]
+        name = AlexYIN
+        email = alexydy@163.com
+[gui]
+        recentrepo = C:/Users/deyuy/Desktop/zhuigengxin
+        recentrepo = C:/Users/deyuy/Desktop/SHELL
+[core]
+        autocrlf = input
+[color]
+        ui = true
+[alias]
+        st = status
+        co = checkout
+        ci = commit
+        br = branch
+        unstage = reset HEAD
+        last = log -1
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%C
+reset %s %Cgreen(%cr) %C(blod blue)<%an>%Creset' --abbrev-commit
+
+deyuy@CNQINN0425B5XP ~ (master)

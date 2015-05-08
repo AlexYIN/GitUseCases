@@ -24,3 +24,19 @@ create AND switch to new branch feature1
  Use tag to add more information
 ************************************************************************************************************************
 fix bug
+config
+
+************************************************************************************************************************
+self-config
+[color]
+        ui = true
+[alias]
+        st = status
+        co = checkout
+        ci = commit
+        br = branch
+        unstage = reset HEAD
+        last = log -1
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%C
+reset %s %Cgreen(%cr) %C(blod blue)<%an>%Creset' --abbrev-commit
+************************************************************************************************************************
