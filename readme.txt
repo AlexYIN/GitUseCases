@@ -13,4 +13,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 1.Get WBPMS repository 
  https://github.com/AlexYIN/WBPMS.git
 **************************************************************************************************************************Creating a new branch dev
-create & switch to new branch feature1
+create AND switch to new branch feature1
