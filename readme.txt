@@ -28,6 +28,7 @@ config
 
 ************************************************************************************************************************
 self-config
+https://www.kernel.org/pub/software/scm/git/docs/git-config.html
 [color]
         ui = true
 [alias]
